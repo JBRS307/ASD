@@ -17,9 +17,9 @@ def ceasar( s ): #algorytm sam w sobie zadziała tylko dla palindromów nieparzy
     center = 0 #palindromu najbardziej wysuniętego na prawo
     r = 0 #prawy kres palindromu najbardziej wysuniętego na prawo
     while i <= n-2:
-        if i<r:
-            mirror = center - (i-center)
-            p[i] = min(r-i, p[mirror])
+        if i<r: #jeśli dla i na lewo od center jest palindrom, to w tej samej odległości strony po prawej również jest palindrom
+            mirror = center - (i-center) #jesli palindrom po lewej nie wychodzi poza palindrom o środku center
+            p[i] = min(r-i, p[mirror]) #przypisujemy temu po prawej tę samą wartość, jeśli wychodzi, to przypisujemy mu wartość do końca palindromu center
 
         radius = p[i]+1
         while s[i+radius] == s[i-radius]: #dzięki wartownikom nie trzeba martwić się o możliwość wyjścia poza tablicę
@@ -27,8 +27,8 @@ def ceasar( s ): #algorytm sam w sobie zadziała tylko dla palindromów nieparzy
         radius -= 1 #ze względu na sprawdzanie w nagłówku pętli radius wychodzi o 1 za duży
         p[i] = radius
 
-        if i+radius>r:
-            r = i + radius
+        if i+radius>r: #sprawdzenie czy znaleziony palindrom nie jest nowym skrajnym prawym
+            r = i + radius #jeśli tak, podmienia je
             center = i
 
         i += 1
