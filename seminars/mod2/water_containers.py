@@ -121,6 +121,10 @@ def count_containers(arr, water):
             next_lvl = min(bot[bot_i][0], top[top_i][0])
             water -= water_step*(next_lvl-i)
             i = next_lvl
+        elif top_i < n: #To wykonujemy, gdy otworzymy już wszystkie pojemniki
+            next_lvl = top[top_i][0]
+            water -= water_step*(next_lvl-i)
+            i = next_lvl
         else: #Wymagane w ostatniej iteracji, jeśli nie kończy się woda
             i += 1
     
