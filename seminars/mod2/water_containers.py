@@ -5,17 +5,18 @@
 #Dane w postaci listy krotek [(p, q, u, v), ...]
 
 from random import randrange
+from time import time
 
 #Generuje losowo tablicę z danymi, najmniej istotna część kodu
-def gen_data(n, k):
+def gen_data(n, k, l):
     arr = [None]*n
 
     for i in range(n):
         p = randrange(0, k+1)
         v = randrange(0, k+1)
 
-        u = p + randrange(1, k+1)
-        q = v + randrange(1, k+1)
+        u = p + randrange(1, l+1)
+        q = v + randrange(1, l+1)
 
         arr[i] = (p, q, u, v)
     
@@ -110,13 +111,17 @@ def count_containers(arr, water):
             top_i += 1
             full_containers += 1 #Jeśli jakiś kontener zostaje zamknięty znaczy to, że został wypełniony wodą
         
-        water -= water_step #Wlewamy wodę, następnie (już w następnej iteracji) sprawdzamy zamknięte i otwarte kontenery
-
         #Zabezpieczenie przed dużą ilością bezsensownych iteracji w wypadku dużej odległości między kontenerami
         #gdy np jeden kończy się na wysokosći 100, a następny zaczyna dopiero na wysokości 10_000_000 
         if water_step == 0 and bot_i < n:
-            i = bot[bot_i][0]
-        else: #Jeśli water_step != 0 (czyli jesteśmy w trakcie lania wody do kontenerów) zwyczajnie podnosimy poziom o 1
+                i = bot[bot_i][0]
+        #Jeśli water_step != 0 skaczemy na następny interesujący 
+        #(czyli taki, na którym następuje zmiana wody wlewanej na krok) nas poziom
+        elif bot_i < n and top_i < n:
+            next_lvl = min(bot[bot_i][0], top[top_i][0])
+            water -= water_step*(next_lvl-i)
+            i = next_lvl
+        else: #Wymagane w ostatniej iteracji, jeśli nie kończy się woda
             i += 1
     
     return full_containers
@@ -124,12 +129,17 @@ def count_containers(arr, water):
 
 if __name__ == "__main__":
     n = 3_000_000
-    k = 2_000
-    water = 100_000_000
-    arr = gen_data(n, k)
+    k = 200_000_000 #maksymalne generowanie lewej i dolnej współrzędnej
+    l = 40_000_000 #maksymalny rozstrzał pojemnika
+    water = 10**20
+    arr = gen_data(n, k, l)
     # print(arr)
 
-    print(count_containers(arr, water))
+    start_time = time()
+    res = count_containers(arr, water)
+    end_time = time()
 
+    print(res)
+    print(end_time - start_time)
 
     
