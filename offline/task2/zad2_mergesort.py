@@ -1,46 +1,48 @@
 from zad2testy import runtests
 
 #Merge Sort
-def merge(arr1, arr2):
-    n1 = len(arr1)
-    n2 = len(arr2)
-    merged = [None]*(n1+n2)
+def merge(arr, l, m, r):
+    n1 = m-l+1
+    n2 = r-m
+    arr1 = [0]*n1
+    arr2 = [0]*n2
 
-    i1 = i2 = i_merged = 0
-    while i1 != n1 and i2 != n2:
+    for i in range(n1):
+        arr1[i] = arr[l+i]
+    for i in range(n2):
+        arr2[i] = arr[m+1+i]
+    
+    i1 = i2 = 0
+    j = l
+    while i1 < n1 and i2 < n2:
         if arr1[i1] > arr2[i2]:
-            merged[i_merged] = arr1[i1]
+            arr[j] = arr1[i1]
             i1 += 1
-            i_merged += 1
         else:
-            merged[i_merged] = arr2[i2]
+            arr[j] = arr2[i2]
             i2 += 1
-            i_merged += 1
+        j += 1
     
-    while i1 != n1:
-        merged[i_merged] = arr1[i1]
+    while i1 < n1:
+        arr[j] = arr1[i1]
         i1 += 1
-        i_merged += 1
-    while i2 != n2:
-        merged[i_merged] = arr2[i2]
+        j += 1
+    while i2 < n2:
+        arr[j] = arr2[i2]
         i2 += 1
-        i_merged += 1
-    
-    return merged
+        j += 1
 
-def mergesort(arr):
-    n = len(arr)
-    if n == 1:
-        return arr
-    mid = (n-1)//2
-    arr1 = mergesort(arr[:mid+1])
-    arr2 = mergesort(arr[mid+1:])
-    return merge(arr1, arr2)
+def mergesort(arr, l, r):
+    if l < r:
+        m = l + (r-l)//2
+        mergesort(arr, l, m)
+        mergesort(arr, m+1, r)
+        merge(arr, l, m, r)
 #End Merge Sort
 
 def snow(S):
     n = len(S)
-    S = mergesort(S)
+    mergesort(S, 0, n-1)
     days_gone = 0
     res = 0
     for i in range(n):
@@ -56,6 +58,7 @@ def snow(S):
 runtests( snow, all_tests = True )
 
 # S = [1, 7, 4, 3, 1]
+# print(snow(S))
 # S = [0, 0, 0, 11, 14, 2, 3, 0, 0]
 # heapsort(S, len(S))
 # print(S)
