@@ -45,7 +45,6 @@ def heapify(arr, i, n):
 def build_heap(arr, n):
     for i in range(parent(n-1), -1, -1):
         heapify(arr, i, n)
-    return
 
 #Zmodyfikowany heapsort
 def heapsort(arr, n):
@@ -56,7 +55,7 @@ def heapsort(arr, n):
     #Pętla musi wykonać się dla 0 (mimo, że tablica jest już wtedy w całości posortowana).
     #Na wypadek, gdyby można było zebrać śnieg z każdego obszaru wąwozu i new_snow nigdzie by się nie wyzerowało
     #dla sortowania nie ma to znaczenia, ponieważ element zamieni się z samym sobą, a w heapify() nic się nie stanie
-    #z powodu nie spełnienia warunków w instrukcjach if
+    #z powodu niespełnienia warunków w instrukcjach if
     for i in range(n-1, -1, -1):
         arr[i], arr[0] = arr[0], arr[i]
         new_snow = arr[i]-days_gone #nowy śnieg otrzymany po wrzuceniu aktualnie największej na "koniec"
@@ -71,7 +70,7 @@ def heapsort(arr, n):
 
 def snow(S):
     n = len(S)
-    return(heapsort(S, n))
+    return heapsort(S, n)
 
 # zmien all_tests na True zeby uruchomic wszystkie testy
 runtests( snow, all_tests = True )
