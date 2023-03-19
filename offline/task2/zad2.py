@@ -6,7 +6,8 @@
 
 #Działa to, ponieważ każdego dnia topnieje taka sama ilość śniegu, więc najwięcej zbierzemy go wjeżdżając do wąwozów, w których
 #jest go najwięcej, NIEZALEŻNIE OD KOLEJNOŚCI (do k pierwszych obszarów w posortowanej tablicy możemy podjechać w dowolnej kolejności
-#i dostaniemy tyle samo śniegu). Podjeżdżamy w takiej kolejności, żeby żadnego z tych k pierwszych obszarów nie wyzerować
+#i dostaniemy tyle samo śniegu, nie musimy przejmować się zniszczeniem ich, ponieważ mamy do nich dostęp zarówno z lewej jak i z prawej strony)
+#Podjeżdżamy w takiej kolejności, żeby żadnego z tych k pierwszych obszarów nie wyzerować
 #W pozostałych obszarach śnieg wyzeruje się zanim zdązymy go zebrać, więc nic nie stracimy przejeżdżając po nim.
 
 #Zadanie można zoptymalizować. Jeśli wykorzystamy heapsorta, który sortuje "od końca" (i.e. jeśli sortujemy rosnąco
