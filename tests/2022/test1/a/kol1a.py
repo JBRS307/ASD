@@ -79,6 +79,10 @@ def g(T):
             if strength > top_strength:
                 top_strength = strength
             strength = 1
+    if check_palindrome(T[n-1]):
+        strength //= 2
+    if strength > top_strength:
+        top_strength = strength
     
     return top_strength
     #Ostateczna złośoność O(N+nlog(n))
