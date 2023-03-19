@@ -1,7 +1,16 @@
 #Zrobione mergesortem ze slicingiem, zamiast klasycznej implementacji, ponieważ ta działa szybciej
 
 from kol1atesty import runtests
-
+def calc_hash(s):
+    r = ord('a')-1
+    p = 31
+    p_pow = 1
+    m = 1_000_000+9
+    hash_val = 0
+    for c in s:
+        hash_val = (hash_val+(ord(c)-r)*p_pow)%m
+        p_pow = (p*p_pow)%m
+    return hash_val
 #Merge Sort
 def merge(arr, l, m, r):
     n1 = m-l+1
@@ -46,6 +55,7 @@ def g(T):
         if temp < T[i]:
             T[i] = temp
 
+    T = [calc_hash(s) for s in T]
     mergesort(T, 0, n-1)
 
     top_strength = 0
