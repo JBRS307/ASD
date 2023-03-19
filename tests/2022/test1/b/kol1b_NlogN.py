@@ -1,5 +1,29 @@
 from kol1btesty import runtests
 
+#Sortowanie przez zliczanie jest świetnym wyborem w wypadku sortowania liter w wyrazie, ponieważ można ten problem
+#sprowadzić do sortowania tablicy, w której liczby zawierają się w przedziale [1, 26], więc zmienna k zawarta w złożoności
+#counting sorta będzie mała.
+#Counting Sort
+def counting_sort(arr):
+    n = len(arr)
+    count = [0]*26 #ponieważ tyle jest liter
+    reductor = ord('a')
+    res = [""]*n
+
+    for char in arr:
+        count[ord(char)-reductor] += 1
+    
+    for i in range(1, 26):
+        count[i] += count[i-1]
+    
+    for i in range(n-1, -1, -1):
+        index = ord(arr[i])-reductor
+        res[count[index]-1] = arr[i]
+        count[index] -= 1
+    
+    return res
+#End Counting Sort
+
 #Merge Sort
 def merge(arr, l, m, r):
     n1 = m-l+1
@@ -30,7 +54,7 @@ def merge(arr, l, m, r):
 
 def mergesort(arr, l, r):
     if l < r:
-        m = l + (r-l)//2
+        m = l+(r-l)//2
         mergesort(arr, l, m)
         mergesort(arr, m+1, r)
         merge(arr, l, m, r)
@@ -39,26 +63,26 @@ def mergesort(arr, l, r):
 def str_sort(word):
     n = len(word)
     str_arr = [char for char in word]
-    mergesort(str_arr, 0, n-1)
+    
+    str_arr = counting_sort(str_arr)
 
     res = ""
     for char in str_arr:
         res += char
-    
     return res
 
 
 def f(T):
     n = len(T)
 
-    for i in range(n): #Posortowanie mergesortem każdego wyrazu - O(Nlog(N))
+    for i in range(n):
         T[i] = str_sort(T[i])
     
-    mergesort(T, 0, n-1) #Posortowanie mergesortem tablicy - O(nlog(n)) N >= n, zatem sprowadza się do do O(Nlog(N))
-    
-    top_pop = 0 #maksymalna popularność anagramowa
-    pop = 1 #popularność anagramowa wyrazu
-    for i in range(1, n): #pętla sprawdzająca czy wyrazy są jednakowe - O(N)
+    mergesort(T, 0, n-1)
+
+    top_pop = 0
+    pop = 1
+    for i in range(1, n):
         if T[i] == T[i-1]:
             pop += 1
         else:
@@ -70,9 +94,7 @@ def f(T):
     
     return top_pop
 
-#Ostateczna złożoność O(Nlog(N) + N + nlog(n)) -> O(Nlog(N)) (po wykluczeniu stałych)
-
-
+#Ostateczna złożoność O(NlogN)
 
 # Zamien all_tests=False na all_tests=True zeby uruchomic wszystkie testy
 runtests( f, all_tests=True )

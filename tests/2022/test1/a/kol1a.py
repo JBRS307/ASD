@@ -66,7 +66,7 @@ def g(T):
     
     T = T+rev_T
 
-    mergesort(T, 0, (2*n)-1) #O(2nlog(2n)), bo wykluczeniu stałej O(nlog(n))
+    mergesort(T, 0, (2*n)-1)
 
     top_strength = 0
     strength = 1
@@ -74,7 +74,7 @@ def g(T):
         if T[i] == T[i-1]:
             strength += 1
         else:
-            if check_palindrome(T[i-1]): #W najgorszym przypadku odpalimy to n razy czyli O(N) w sumie
+            if check_palindrome(T[i-1]):
                 strength //= 2
             if strength > top_strength:
                 top_strength = strength
@@ -85,7 +85,7 @@ def g(T):
         top_strength = strength
     
     return top_strength
-    #Ostateczna złośoność O(N+nlog(n))
+    #Ostateczna złośoność O(Nlog(N))
 
 
 # Zamien all_tests=False na all_tests=True zeby uruchomic wszystkie testy
