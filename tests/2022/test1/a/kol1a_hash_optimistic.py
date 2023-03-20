@@ -2,14 +2,12 @@
 
 from kol1atesty import runtests
 def calc_hash(s):
-    r = ord('a')-1
     p = 31
-    p_pow = 1
+    # p_pow = 1
     m = 1_000_000+9
     hash_val = 0
     for c in s:
-        hash_val = (hash_val+(ord(c)-r)*p_pow)%m
-        p_pow = (p*p_pow)%m
+        hash_val = ((hash_val*p)%m+ord(c))%m
     return hash_val
 #Merge Sort
 def merge(arr, l, m, r):
