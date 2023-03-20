@@ -1,7 +1,7 @@
 from kol1btesty import runtests
 
 def calc_hash(s):
-    p = 31
+    p = 10_009
     m = 1_000_000_009
     res = 0
     for c in s:
