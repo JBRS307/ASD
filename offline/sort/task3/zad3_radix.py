@@ -22,7 +22,8 @@ def radix_count(arr, n, exp):
 
 def radixsort(arr, n):
     exp = 1
-    for i in range(10):
+    max_elem = max(arr)
+    while max_elem//exp > 0:
         radix_count(arr, n, exp)
         exp *= 10
     return arr
@@ -32,7 +33,7 @@ def calc_hash(s):
     r = ord('a')-1
     p = 31
     p_pow = 1
-    m = 1_000_009
+    m = 1_000_000_009
     res = 0
     for c in s:
         res = (res + (ord(c)-r)*p_pow)%m

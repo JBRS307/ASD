@@ -39,7 +39,7 @@ def calc_hash(s):
     r = ord('a')-1
     p = 31
     p_pow = 1
-    m = 1_000_009
+    m = 1_000_000_009
     res = 0
     for c in s:
         res = (res + (ord(c)-r)*p_pow)%m
