@@ -1,3 +1,17 @@
+#Jakub Rekas
+
+#Algorytm działa w czasie O(Nlog(N)) ze względu na porównywanie wyrazów leksykograficznie w algorytmie sortującym
+#1. Najpierw należy ustawić każdy wyraz tak, żeby wszystkie wyrazy równoważne były w w tej samej kolejności, tzn. jeśli
+#odwrotność i-tego wyrazu jest mniejsza leksykograficznie od tego wyrazu, to należy ten wyraz odrwócić. W ten sposób
+#wszystkie wyrazy równoważne będą w tej samej konfiguracji.
+#2. Sortujemy tablicę leksykograficznie (zastosowałem do tego klasycznego mergesorta)
+#3. Iterujemy po tablicy począwszy od wyrazu z indeksem 1, każdy wyraz porównujemy z poprzednim (dlatego nie można od 0). 
+#Jeśli są jednakowe zwiększamy pomocniczą zmienną "strength" o 1. Jeśli nie są jednakowe sprawdzamy czy 
+#aktualna siła jest większa od maksymalnej, jeśli tak, to zastępujemy ją "strength".
+#Następnie ustawiamy "strength" na 1 niezależnie od wyniku "if'a" (każdy wyraz ma siłę co najmniej 1, ponieważ nie ma wymogu, że
+#i != j)
+#4. Zwracamy maksymalną siłę.
+
 from zad3testy import runtests
 
 #Merge Sort
