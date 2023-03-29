@@ -8,6 +8,8 @@
 #4. Wykonaj partition() używając x jako pivot.
 #5. Jeśli x jest na pozycji k, to zwróć x (wykorzystanie selecta)
 
+from random import randrange
+
 def partition(arr: list, l: int, r: int) -> int:
     pivot = arr[r]
     i = l-1
@@ -28,7 +30,19 @@ def select(arr, k, l, r):
     if m < k:
         return select(arr, k, m+1, r)
 
-def median_of_medians(arr: list) -> int:
+def super_select(arr, k, l, r):
+    new_pivot = median_of_medians(arr, l, r)
+    arr[r], arr[new_pivot] = arr[new_pivot], arr[r]
+    m = partition(arr, l, r)
+
+    if m == k: return arr[m]
+    elif m > k: return super_select(arr, k, l, m-1)
+    elif m < k: return super_select(arr, k, m+1, r)
+
+def median_of_medians(T: list, l: int, r: int) -> int:
+    if l == r:
+        return T[0]
+    arr = T[l:r+1]
     n = len(arr)
     m = n//5+1
     fives = [[0]*5 for _ in range(m)]
@@ -47,3 +61,12 @@ def median_of_medians(arr: list) -> int:
     for i in range(m-1):
         medians[i] = select(fives[i], 3, 0, 4)
     medians[m-1] = select(fives[m-1], j//2+1, 0, j-1)
+
+    return median_of_medians(medians, 0, m-1)
+
+if __name__ == "__main__":
+    arr = [randrange(1, 101) for _ in range(30)]
+
+    print(*arr, end="\n\n")
+    print(*sorted(arr), end="\n\n")
+    print(super_select(arr, 4, 0, 29))
