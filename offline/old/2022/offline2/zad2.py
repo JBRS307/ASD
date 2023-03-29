@@ -1,6 +1,6 @@
 from zad2testy import runtests
 
-def prep_data(arr: list[list[int]], n: int) -> tuple[tuple[int]]:
+def prep_data(arr: list, n: int) -> tuple:
     A = [None]*n
     B = [None]*n
 
@@ -10,7 +10,7 @@ def prep_data(arr: list[list[int]], n: int) -> tuple[tuple[int]]:
     
     return (A, B)
 
-def merge(arr: list[tuple[int]], l: int, m: int, r: int) -> None:
+def merge(arr: list, l: int, m: int, r: int) -> None:
     n1 = m-l+1
     n2 = r-m
 
@@ -37,7 +37,7 @@ def merge(arr: list[tuple[int]], l: int, m: int, r: int) -> None:
         i2 += 1
         j += 1
 
-def mergesort(arr: list[tuple[int]], l: int, r: int) -> None:
+def mergesort(arr: list, l: int, r: int) -> None:
     if l < r:
         m = l+(r-l)//2
         mergesort(arr, l, m)
@@ -58,6 +58,7 @@ def depth(arr) -> int:
         counting_arr[A[i][1]] += n-1-i
         if A[i][0] == curr_start:
             counting_arr[A[i][1]] += counter
+            counter += 1
         else:
             curr_start = A[i][0]
             counter = 1
@@ -68,7 +69,7 @@ def depth(arr) -> int:
     while i < n-1:
         if B[i][0] != B[i+1][0]:
             for j in range(start_series, end_series+1):
-                counting_arr[B[j][1]] -= n-series_leng-start_series
+                counting_arr[B[j][1]] -= (n-series_leng-start_series)
             series_leng = 1
             start_series = end_series = i+1
             i += 1
@@ -76,8 +77,7 @@ def depth(arr) -> int:
             end_series += 1
             series_leng += 1
             i += 1
-
-
+        
     return max(counting_arr)
     
 
@@ -89,7 +89,9 @@ runtests( depth )
 #      [5, 6],
 #      [2, 5],
 #      [8, 9],
-#      [1, 6]
+#      [1, 6],
+#      [7, 9],
+#      [8, 9]
 # ]
 
 # print(depth(L))
