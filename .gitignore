@@ -1,5 +1,2 @@
-offline/*/*/__pycache__
-offline/task1/zad1_O(n^2).py
-tests/*/*/*/__pycache__
-
-seminars/*/output
+output/
+__pycache__/
