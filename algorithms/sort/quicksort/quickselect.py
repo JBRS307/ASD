@@ -12,8 +12,13 @@ def partition(arr, l, r):
     arr[r], arr[i+1] = arr[i+1], arr[r]
     return i+1
 
+def rand_partition(arr, l, r):
+    m_new = randrange(l, r+1)
+    arr[m_new], arr[r] = arr[r], arr[m_new]
+    return partition(arr, l, r)
+
 def select(arr, k, l, r):
-    m = partition(arr, l, r)
+    m = rand_partition(arr, l, r)
 
     if m == k:
         return arr[m]

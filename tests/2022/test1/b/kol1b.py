@@ -20,7 +20,7 @@ def find_max_letter_quantity(arr: list) -> int:
 def counting_sort(arr: list, quant: int, letter: int) -> None:
     n = len(arr)
     count = [0]*(quant+1)
-    res = [[]]*n
+    res = [None]*n
 
     for i in range(n):
         count[arr[i][letter]] += 1
