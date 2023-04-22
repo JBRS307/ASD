@@ -18,7 +18,7 @@ def BFS(G, s, t):
     q.append(s)
 
     visited[s] = True
-    while len(q) != 0:
+    while not(len(q) == 0):
         v = q.popleft()
         for v_next in G[v]:
             if not visited[v_next]:
