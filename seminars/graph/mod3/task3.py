@@ -1,0 +1,1 @@
+#Znajdź ścieżkę taką, że wagi sa malejące, znajdź najkrótszą z nich
