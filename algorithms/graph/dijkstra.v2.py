@@ -3,6 +3,7 @@ from queue import PriorityQueue
 def dijkstra(G, s):
     n = len(G)
     parent = [None]*n
+    visited = [False]*n
     dist = [float('inf')]*n
     q = PriorityQueue()
     dist[s] = 0
@@ -11,15 +12,12 @@ def dijkstra(G, s):
     while not q.empty():
         d, u = q.get()
         for v, value in G[u]:
-            if dist[v] == float('inf'):
-                parent[v] = u
-                dist[v] = d+value
-                q.put((dist[v], v))
-                continue
-            if d+value < dist[v]:
-                dist[v] = d+value
-                parent[v] = u
-                q.put((dist[v], v))
+            if not visited[v]:
+                if d+value < dist[v]:
+                    dist[v] = d+value
+                    parent[v] = u
+                    q.put((dist[v], v))
+        visited[u] = True
     
     return parent, dist
 
