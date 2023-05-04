@@ -54,4 +54,17 @@ def list_to_edges(G): #Później
     n = len(G)
     G_edges = []
 
+    for i in range(n):
+        for v in G[i]:
+            a = i
+            b = v[0]
+            if a > b:
+                a, b = b, a
+            
+            if (a, b, v[1]) not in G_edges:
+                G_edges.append((a, b, v[1]))
+    
+    return G_edges
+
+
 

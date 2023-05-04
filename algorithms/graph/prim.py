@@ -1,25 +1,26 @@
+#tree dijkstra
+
 from queue import PriorityQueue
 
-def dijkstra(G, s):
+def tree_dijkstra(G, s):
     n = len(G)
     parent = [None]*n
     visited = [False]*n
     dist = [float('inf')]*n
-    q = PriorityQueue()
     dist[s] = 0
+    q = PriorityQueue()
 
     q.put((0, s))
     while not q.empty():
         _, u = q.get()
         for v, value in G[u]:
-            if not visited[v]:
-                if dist[u]+value < dist[v]:
-                    dist[v] = dist[u]+value
-                    parent[v] = u
-                    q.put((dist[v], v))
+            if not visited[v] and value < dist[v]:
+                dist[v] = value
+                parent[v] = u
+                q.put((dist[v], v))
         visited[u] = True
     
-    return parent, dist
+    return parent
 
 if __name__ == "__main__":
     G = [
@@ -35,7 +36,4 @@ if __name__ == "__main__":
     [(8, 11)]
 ]
 
-parent, dist = dijkstra(G, 0)
-print(parent)
-print()
-print(dist)
+print(*tree_dijkstra(G, 0))
