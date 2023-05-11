@@ -14,6 +14,7 @@ def multi_dijkstra(G):
     for t in range(n):
         for u in range(n):
             for v in range(n):
+                # dist[u][v] = min(dist[u][t]+dist[t][v], dist[u][v])
                 if dist[u][t]+dist[t][v] < dist[u][v]:
                     dist[u][v] = dist[u][t]+dist[t][v]
                     parent[u][v] = u
