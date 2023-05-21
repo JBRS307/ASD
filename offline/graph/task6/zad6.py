@@ -1,3 +1,19 @@
+#Jakub Rękas
+
+#Zadanie jest typowym problemem na znalezienie maksymalnego skojarzenia w grafie dwudzielnym, nieważonym
+#Algorytm działa następująco
+#1. Na początku należy zainicjalizować tablicę, w której każdy indeks odpowiada danej maszynie, a wartość pod tym indeksem to przypisany do
+#maszyny pracownik. Wartości na początku ustawiamy na None
+#2. Iterujemy przez wszystkich pracowników. W każdej iteracji tworzymy tablicę, w której zapisujemy, które maszyny już przejrzeliśmy w danej
+#iteracji. (machine_checked)
+#3. Każdemu pracownikowi próbujemy przypisać maszynę. Najpierw sprawdzamy, czy którakolwiek z maszyn, przy których może pracować jest wolna,
+#jeśli tak, przypisujemy go do tej maszyny. Jeśli natomiast żadna nie jest wolna, rekurencyjnie sprawdzamy, czy pracownik, który został
+#do danej maszyny wpisany wcześniej, może zostać przeniesiony. Tablica machine_checked służy do tego, aby nie sprawdzać maszyny,
+#do której pracownik aktualnie jest przypisany.
+#4. Jeśli nowemu pracownikowi w danej iteracji udało się przypisać maszynę, to zwiększamy wynik o 1.
+#5. Na koniec zwracamy ilość pracowników, którym udało się przypisać maszynę. 
+
+
 from zad6testy import runtests
 
 def find_machine(M, worker, machine_assign, machine_checked):
