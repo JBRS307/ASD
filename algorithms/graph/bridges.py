@@ -8,7 +8,7 @@ def find_bridges(G):
     time = 0
 
     def DFSvisit(s):
-        nonlocal G, visited, parent, time_arr, time
+        nonlocal G, visited, parent, time_arr, time, low
         visited[s] = True
         time += 1
         time_arr[s] = time
@@ -19,7 +19,7 @@ def find_bridges(G):
                 DFSvisit(child)
                 low[s] = low[child] if low[child] < low[s] else low[s] #min(low[child], low[s])
             elif child != parent[s]:
-                low[s] = time_arr[child] if time_arr[child] < low[s] else low[s] #min(child, low[s])
+                low[s] = time_arr[child] if time_arr[child] < low[s] else low[s] #min(time[child], low[s])
         time += 1
 
     DFSvisit(0)
