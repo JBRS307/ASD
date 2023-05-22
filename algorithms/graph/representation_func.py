@@ -29,6 +29,16 @@ def matrix_to_list(G):
     
     return G_list
 
+def matrix_to_list_unweighted(G):
+    n = len(G)
+    G_list = [[] for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            if G[i][j]:
+                G_list[i].append(j)
+    
+    return G_list
+
 def matrix_to_edges(G):
     n = len(G)
     G_edges = []
@@ -65,6 +75,24 @@ def list_to_edges(G): #Później
                 G_edges.append((a, b, v[1]))
     
     return G_edges
+
+
+if __name__ == "__main__":
+    G = [
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+        [0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+        [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+        [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
+    ]
+
+    print(*matrix_to_list_unweighted(G), sep=",\n")
 
 
 
