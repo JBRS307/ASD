@@ -7,7 +7,7 @@ def kruskal(G, n):
     parent = [i for i in range(n)]
     rank = [0]*n
     MST = []
-    # visited = [False]*n
+    # visited = [False]`*n
 
     def find(x):
         nonlocal parent, rank

@@ -2,6 +2,15 @@
 
 from queue import PriorityQueue
 
+
+def edge_to_list(G, n):
+    new_G = [[] for _ in range(n)]
+    for edge in G:
+        new_G[edge[0]].append((edge[1], edge[2]))
+        new_G[edge[1]].append((edge[0], edge[2]))
+    
+    return new_G
+
 def tree_dijkstra(G, s):
     n = len(G)
     parent = [None]*n
@@ -36,4 +45,28 @@ if __name__ == "__main__":
     [(8, 11)]
 ]
 
-print(*tree_dijkstra(G, 0))
+    print(*tree_dijkstra(G, 0))
+
+    G = [
+        (0, 1, 2),
+        (1, 2, 3),
+        (2, 3, 1),
+        (0, 3, 4),
+        (3, 4, 5),
+        (4, 5, 6),
+        (5, 6, 7),
+        (6, 7, 8),
+        (7, 8, 9),
+        (8, 9, 10),
+        (9, 0, 11),
+        (0, 2, 12),
+        (2, 4, 13),
+        (4, 6, 14),
+        (6, 8, 15)
+    ]
+
+    G = edge_to_list(G, len(G))
+
+    print(*tree_dijkstra(G, 0))
+
+
