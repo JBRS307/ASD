@@ -13,13 +13,13 @@ def DFS(G, s):
     
     def DFSvisit(G, s):
         nonlocal visited_edges, euler_circuit
-        for i in range(visited_edges[s], len(G[s])):
+        while visited_edges[s] < len(G[s]):
                 visited_edges[s] += 1
-                DFSvisit(G, G[s][i])
-        euler_circuit.insert(0, s)
+                DFSvisit(G, G[s][visited_edges[s]-1])
+        euler_circuit.append(s)
     
     DFSvisit(G, s)
-    return euler_circuit
+    return euler_circuit[::-1]
 
 if __name__ == "__main__":
     G = [

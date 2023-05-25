@@ -15,6 +15,17 @@ def euler_circuit(G, s):
             edges[curr] -= 1
             curr = next_v
         else:
-            circuit.insert(0, curr)
+            circuit.append(curr)
             curr = path.pop()
-    return circuit
+    return circuit[::-1]
+
+if __name__ == "__main__":
+    G = [
+        [1, 2],
+        [0, 2],
+        [0, 1]
+    ]
+
+    circuit = euler_circuit(G, 0)
+    print(circuit)
+
