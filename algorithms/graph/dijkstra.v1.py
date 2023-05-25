@@ -17,7 +17,7 @@ def dijkstra(G, s):
             return dist, parent
         
         for i in range(n):
-            if min_ind != i and G[min_ind][i] and dist[min_ind] + G[min_ind][i] < dist[i]:
+            if not visited[i] and min_ind != i and G[min_ind][i] and dist[min_ind] + G[min_ind][i] < dist[i]:
                 dist[i] = dist[min_ind] + G[min_ind][i]
                 parent[i] = min_ind
         
