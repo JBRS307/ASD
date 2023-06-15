@@ -1,6 +1,7 @@
 # Mamy tablicę przedmiotów, każdy przedmiot ma jakąś wagę oraz jakąś wartość
 # Mamy plecak o określonej pojemności, zapakuj plecak tak, aby ukraść jak najwięcej.
 
+# Rozwiązanie rekurencyjne
 # def knapsack(items, cap, memo, index=0, price=0):
 #     if cap == 0 or (index == len(items)-1 and cap > 0):
 #         return price
