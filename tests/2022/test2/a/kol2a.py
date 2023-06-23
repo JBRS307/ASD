@@ -28,38 +28,51 @@ def drivers( P, B ):
 
     switches = []
     n = len(S)
-    dp = [[inf]*2 for _ in range(n)]
-    dp[0][1] = 0 # 0 - Marian, 1 - Jacek
+    dp = [[[inf, []] for _ in range(2)] for _ in range(n)]
+    dp[0][1][0] = 0 # 0 - Marian, 1 - Jacek
 
     for i in range(1, n):
         if stamina_J > 0:
-            if dp[i-1][1] < dp[i-1][0]:
-                dp[i][1] = dp[i-1][1]
+            if dp[i-1][1][0] < dp[i-1][0][0]:
+                dp[i][1][0] = dp[i-1][1][0]
+                dp[i][1][1].extend(dp[i-1][1][1])
                 stamina_J -= 1
             else:
-                dp[i][1] = dp[i-1][0]
-                switches.append((S[i-1][2], i))
+                dp[i][1][0] = dp[i-1][0][0]
+                dp[i][1][1].extend(dp[i-1][0][1])
+                dp[i][1][1].append(S[i-1][2])
+                # switches.append((S[i-1][2], i))
                 stamina_J = 2
         else:
-            dp[i][1] = dp[i-1][0]
-            switches.append((S[i-2][2], i))
+            dp[i][1][0] = dp[i-1][0][0]
+            dp[i][1][1].extend(dp[i-1][0][1])
+            dp[i][1][1].append(S[i-1][2])
+            # switches.append((S[i-2][2], i))
             stamina_J = 2
         if stamina_M > 0:
-            if dp[i-1][0] < dp[i-1][1]:
-                dp[i][0] = dp[i-1][0]+S[i][1]
+            if dp[i-1][0][0] < dp[i-1][1][0]:
+                dp[i][0][0] = dp[i-1][0][0]+S[i][1]
+                dp[i][0][1].extend(dp[i-1][0][1])
                 stamina_M -= 1
             else:
-                dp[i][0] = dp[i-1][1]+S[i][1]
-                switches.append((S[i-1][2], i))
+                dp[i][0][0] = dp[i-1][1][0]+S[i][1]
+                dp[i][0][1].extend(dp[i-1][1][1])
+                dp[i][0][1].append(S[i-1][2])
+                # switches.append((S[i-1][2], i))
                 stamina_M = 2
         else:
-            dp[i][0] = dp[i-1][1]+S[i][1]
-            switches.append((S[i-1][2], i))
+            dp[i][0][0] = dp[i-1][1][0]+S[i][1]
+            dp[i][0][1].extend(dp[i-1][1][1])
+            dp[i][0][1].append(S[i-1][2])
+            # switches.append((S[i-1][2], i))
             stamina_M = 2
 
+    print(end='')
 
-    return switches
-
+    if dp[n-1][0][0] < dp[n-1][1][0]:
+        return dp[n-1][0][1]
+    else:
+        return dp[n-1][1][1]
 
 # zmien all_tests na True zeby uruchomic wszystkie testy
-runtests( drivers, all_tests = False )
+runtests( drivers, all_tests = True )
