@@ -1,3 +1,10 @@
+# Jakub Rękas
+
+# Algorytm działa w czasie O(n^2). Wykorzystuje on metodę wstępującą. Dla każdego parkingu
+# oblicza minimalną cenę, jaką trzeba zapłacić, żeby do niego dojechać w dwóch wypadkach: najpierw
+# jeśli nie możemy wykorzystać podwojonego dystansu, później jeśli możemy.
+# Wybiera on minimalną cenę w zasięgu wstecz.
+
 from zad9testy import runtests
 from math import inf
 
