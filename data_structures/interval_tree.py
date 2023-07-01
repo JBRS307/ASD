@@ -1,5 +1,5 @@
 from math import inf
-from collections import deque
+# from collections import deque
 
 class TreeNode:
     def __init__(self, key=None, span=None):
@@ -29,11 +29,11 @@ class IntervalTree:
 
     def search_intervals(self, key):
         intervals = []
-        stack = deque()
+        # stack = deque()
 
         def find_nodes(curr):
-            nonlocal stack, intervals, key
-            stack.append(curr)
+            nonlocal intervals, key
+            intervals.extend(curr.intervals)
             if curr.key is None:
                 return
             if key < curr.key:
@@ -46,9 +46,9 @@ class IntervalTree:
         
         find_nodes(self.root)
 
-        while stack:
-            node = stack.pop()
-            intervals.extend(node.intervals)
+        # while stack:
+        #     node = stack.pop()
+        #     intervals.extend(node.intervals)
         
         return intervals
 
