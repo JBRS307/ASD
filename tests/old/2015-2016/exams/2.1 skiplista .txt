@@ -1,0 +1,29 @@
+Dane: n przedzia³ow <a,b> a,b naleza do R
+      k - ilosc przedzialow, ktore tworza przeciecie
+
+Przedzialy trzymamy w strukturze
+struct przedzial{
+	int pocz,koniec;
+}
+Potrzebujemy tez dodatkowe struktury danych ktora pomiesci k liczb, moze byc tablica.
+Oraz dana do przechowania aktualnego max_przedzialu=0.
+Dodatkowo tablica koncow, posortowanej struktury, ktora utorzona jest w czasie O(n)
+
+Opis: Umieszamy dane w Skipliscie wgledem danej pocz, co wiaze sie z samoistnym posotowaniem danych
+      w czsie O(nlgn). Do sprawdzenia mamy n-k mozliwych przeciec. Robimy to w petli n-k.
+      Rozpatrujemy teraz przedzialy od x(aktuane miejsce w petli) do x+k. Oczywistym jest, ze
+      najmniejszym poczatkiem jest x+k struktura. Sprawdzamy czy wgl takie przeciecie moze istniej 
+      porownujac x+k'ty poczatek z x'tym koncem. Jesli pocz[x+k]<=koniec[x] omijamy dalsze czynnosci w 
+      danym obiegu petli. Jesli pocz[x+k]>koniec[x] to zapisujemy w jakies danej(tmp_maxP). 
+      Nastepnie sortujemy tablice koncow w przedzialach <x,x+k> w czasie O(klgk). X'ty element 
+      z tej tablicy juz po sorotwaniu jest naszym koncem przedzialu(tmp_maxK). Nie musimy nic sprawdzac
+      pierwsze sprawdzenie wykluczalo/potwierdzalo istenienie przedzialu. Liczby teraz przedzial
+      akt_prze=tmp_maxP-tmp_maxK. Jesli akt_prze>max_przedzial to max_przedzial=akt_prze.  
+      Powtarzamy to do konca pêtli.
+
+Czas: Stworzenie tablicy koncow O(n)
+      Wrzucenie do skiplisty n elementow O(nlogn)
+      Petla, ktora wykona sie n-k razy i posotuje tyle samo przedzialów zawierajacych k liczb. 
+      O(nklgk-k^2lgk)
+
+      Razem O(n+nlgn+nklgk-k^2lgk)=nklgk

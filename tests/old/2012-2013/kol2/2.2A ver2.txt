@@ -1,0 +1,1 @@
+Opis: Trzymamy w kazdym wezle rozmiar drzewa. Robimy funkcje k-ty element co do wielkosci i tyle.

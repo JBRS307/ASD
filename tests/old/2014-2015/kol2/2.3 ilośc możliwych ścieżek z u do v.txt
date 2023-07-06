@@ -1,0 +1,9 @@
+Dane: Graf nieskierowany
+Zadanie: Znalesc ilosc mozliwych najkrotszych sciezek z v do u
+Opis: Odpalic na grafie algorytm belmana forda z lekko modyikacja. Gdy akutalizujemy kosz przejscia
+      wchodzimy do ifa pod warunkiem (d[i][j]>w) teraz zmieniamy go na (d[i][j]>=w) i w srodku sprawdzamy jeszcze
+      czy wlasnie (d[i][j]==w) jesli tak to tablice p(w ktorej oprocz drogi mamy teraz strukture zawierajaca
+      droge+ilosc powotrzen, na start wyzerowana). Pierwsze odwiedzenie dla > da +1 nastepne tylko przy ==
+      Po przejscu algo, odczytujemy sciezke z v do u. Patrzac na ilosc powotrzen. Minimum ze wszytkich
+      wezlow ktore przeszlismy(te pwotrzenia) dadza nam ilosc ilosc mozliwych najkrotszych sciezek z 
+      v do u.

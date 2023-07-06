@@ -1,0 +1,4 @@
+Opis: Z pewnoœæ musi byc to zrownowa¿ona strukura drzewaista, aby zejscia do max i min
+      elementu byly w logn. Nie wiem do konca jak powinna wygladac struktura za 10pkt, lecz bardzo 
+      podbna struktur¹ bylob drzewo AVL. Dojsca do elemntow itp sa tam w czasie logn. Jedynym problemem
+      sa tam jedynie rotacje.

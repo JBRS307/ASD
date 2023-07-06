@@ -1,0 +1,3 @@
+Opis: W kazdym wezle trzymamy informacje o sumie wezlow mniejszych lub rownych od danego, dzieki f 
+      znajdowania ktego elementu. Nastpenie znajudjmey te 2 wezly w lgn i odejmujemy od siebie wartosc 
+      wieksza od mniejszej.

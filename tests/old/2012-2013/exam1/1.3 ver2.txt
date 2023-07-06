@@ -1,0 +1,12 @@
+Dane: Graf acykliczny
+Opis: Tworzymy tablice visited o wilekosc n wierzcholkow.Przechodzimy dfs'em po grafie od dowolnego 
+      wierzcholka. zliczamy przjesica dfs'a, jesli wejdzie na wierzcholek nieodiwedzont dodajemy do 
+      zmiennej tmp_dest=+1 po kazdym takim dodaniu sprawdzamy czy max_dest(poczatkowo==0) jest mniejsze
+      od tmp_dest, jesli tak to max_dest=tmp_dest. Natomiast jesli wroci na odwiedzone pole to odejmejmy
+      od tmp_dest=-1.(jesli tmp_dest wrocil do wartosci zero to znaczy, ze sprawdzy innych sasiadow 
+      wierzcholka startowego, jesli nie ma to przekatna to max_dest, jesli sa liczmy dalej).
+      Jesli tmp_dest wrocildo 0 to max_dest przepisujmey do zmiennej result i max_dest zerujemy.
+      Liczmy dalej na podbnje zasadzie tak samo do wyzerowania tmp_dest albo do zakoncznia dfs'a. 
+      Jesli natapi zakonczenie dfs dodajemy wartosc max_dest do result i zwracamy dlugosc przekatnej.
+      Jesli nie to powtarzamy kroki z dodanitme wart max_dest do result i odpaleniem dfs na kolejnych 
+      sasiadach wierzcholka startowego, az do momentu zakonczenia dfs.

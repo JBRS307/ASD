@@ -1,0 +1,7 @@
+Dane: m klauzul
+Opis: Ustawiamy na poczatek wszystkie klauzule radnomowo. Nastepnie przechodzimy po wszystkich i 
+      sprawdzamy ile jest spelnionych. Jezeli polowa to koniec. Jesli nie to zamieniamy wszystkie na
+      przeciwne i wtedy niespelnione stana sie spelnione, bo gdy sie nie spelnialy zadna zmienna w srodku
+      klauzli nie byla prawdziwa, a po rewersie zawsze conajmniej jedna bedize ok, wiec alternatywa 
+      bedzie spelniona.
+      

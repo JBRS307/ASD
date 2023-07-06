@@ -1,0 +1,30 @@
+Dane: n struktur zawierajacych dane x_p,y_p,x_k,y_k; dana pole, ktora przechoa potrzebna ilosc farby
+
+Opis: Struktury umieszczamy w skipliscie wzglêdem danej x_p. Sprawi to, iz eleemnety beda posortowane 
+      w czasie nlogn i dodatkowo mamy do kazdego dostep w czasie logn.
+      Dodatkowo przechodzimy po skipliscie szukajac fragmentow o tym saym x_p 
+      i sortujmy jest wg y_p(malejaco/nierosnaco)
+      w danym przedziale. (max nlogn)
+      Nastepnie przechodzimy po skipliscie do momentu usuniecia wszystkich elementow(innych niz head i tail)
+      Bierzemy pierwszy i drugi element z listy. Tu zaczyna sie lista porownan: 
+      (jesli wykona sie chociaz 1 if, to bierzemy dwa kolejne elmenty)
+      -jesli drugi element ma takie samo x_p, ale mniejsze x_k to liczymy pole y1_p*(x1_k-x1_p)
+       usuwamy element drugi,a wszystkim elementom o tym saym x_p aktualizujemy x_p na x2_k
+       i usuwamy element pierwszy
+      -jesli drugi element ma to samo x_p, ale wieksze x_k to liczmy pole y1_p*(x1_k-x1_p)
+       aktualizujemy drugiemu elementowi x_p na x2_k i kazdemu innemu elementowi o tym samym x_p
+       (petla do elementu o innym x_p) i usuwamy pierwszy element
+      -jesli x_k pierszego elementu jest mniejsze od x_p drugiego to liczymy pole y1_p*(x1_k-x_p)
+       i usuwamy pierwsze element
+      -jesli pierwszy element ma wieksze y_p, ale x1_k<x2_k to aktualizujemy drugiemu elmentowi
+       x_p na x_k pierwszego elementu i liczmy pole y1_p*(x2_p-x1_p) i aktualizujmy pierwszemu 
+       elementowi x_p na x2_p
+      -jesli pierwszy element ma wieksze y_p, ale x1_k>x2_k to liczymy pole y1_p*(x2_p-x1_p)
+       aktualizujmy pierwszemu elementowi x_p na x2_p a drugi elemen usuwamy
+      -jesli pierwszy element ma mniejsze y_p, ale x1_k<x2_k liczymy pole y1_p*(x2_p-x1_p)
+       i usuwamy piereszy element
+      -jesli pierwszy element ma mniejsze y_p, ale x1_k>x2_k to liczmy pole y1_p*(x2_p-x1_p)
+       aktualizujemy x_p pirwszemu elementowi na x2_k
+      -jesli kolejny element to tail to liczmy pole y_p*(x_k-x_p)
+
+Z³o¿onoœæ: O(nlogn)

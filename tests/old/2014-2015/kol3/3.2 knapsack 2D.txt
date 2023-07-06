@@ -1,0 +1,7 @@
+Dane: n przemidtow o wartosci v, ciezarze r i wysokosci h. 2d knapsack problem
+Opis: Pierwszym z rozwiazaniem jest wyznaczenie wspolczynnikow oplacalnosci dla poszczegolnych przedmiotow
+      (v/r/h). Posortowanie wg tych wspolczynnikow i dobieranie przedmiotow az do przekroczenia limitu.
+      Po przekroczeniu wybieramy lepsza opcje z dotychczasz wybrane lub ten co sie nie miesci.
+      
+
+      Drugie rozwiazanie typu dynamicznego programowania jest pojebane.
