@@ -4,12 +4,12 @@
 # SKĄD możemy się do niej teleportować, a to znacznie bardziej przydatna informacja.
 # Następnie wykonujemy funkcję f(b, i). Jeśli b == 0 sprawdzamy dodatkowo wszystkie możliwe miejsca, z których możemy się teleportować
 # z b = 0.
-# następnie wykonujemy te rekurencyjnie funkcję dla każdej z planet, z których dolecenie na i jest możliwe, sprawdzając
+# następnie wykonujemy rekurencyjnie tę funkcję dla każdej z planet, z których dolecenie na planetę i jest możliwe, sprawdzając wartości
 # tylko do maksymalnej ilości paliwa, jakie możemy mieć na każdej z nich. Łatwo to wyliczyć, jest to E pomniejszone o
 # dystans między planetą j oraz planetą j-1, można tak robić, ponieważ są posortowane.
 # Ponadto jeśli okaże się,
 # że dla jakiegoś przypadku dotankowanie na planecie j, żeby osiągnąć b sprawi, że przekroczymy E, to nie
-# wykonjemy funkcji. Wynikiem jest minimum z dolecenia do n-1, dla każdej możliwej wartości b.
+# wykonjemy funkcji dla tej wartości paliwa na j. Wynikiem jest minimum z dolecenia do n-1, dla każdej możliwej wartości b.
 
 #złoźoność rekurencji z memoizacją O(n^2E^2)
 
